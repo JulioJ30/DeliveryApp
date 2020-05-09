@@ -19,6 +19,8 @@ import { firebaseConfig} from "../environments/environment";     // aqui se encu
 import {GooglePlus} from '@ionic-native/google-plus/ngx';
 //FACEBOOK
 import {Facebook} from '@ionic-native/facebook/ngx';
+//HTTP
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent],
@@ -26,14 +28,16 @@ import {Facebook} from '@ionic-native/facebook/ngx';
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFirestoreModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    HttpClientModule
   ],
   providers: [
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     GooglePlus,
-    Facebook
+    Facebook,
+    
   ],
   bootstrap: [AppComponent]
 })

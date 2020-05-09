@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
-  styleUrls: ['./login.page.scss'],
+  styleUrls: ['./login.page.scss','../app.component.scss'],
 })
 export class LoginPage implements OnInit {
 
@@ -19,11 +19,12 @@ export class LoginPage implements OnInit {
 
   doLogin()
   {
-    this.authService.login(this.email, this.password).then( () =>{
-      this.router.navigate(['/home']);
-    }).catch(err => {
-      alert('los datos son incorrectos o no existe el usuario');
-    })
+    // this.authService.login(this.email, this.password).then( () =>{
+    //   this.router.navigate(['/home']);
+    // }).catch(err => {
+    //   alert('los datos son incorrectos o no existe el usuario');
+    // })
+    this.router.navigate(['/home']);
   }
 
 

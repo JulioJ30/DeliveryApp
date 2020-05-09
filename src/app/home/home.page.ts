@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+
+//SERVICIOS
+import {EmpresasService} from '../services/empresas.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
@@ -7,9 +10,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomePage implements OnInit {
 
-  constructor() { }
+  ngOnInit(): void { }
 
-  ngOnInit() {
+  restaurantes :any;
+
+  constructor(private empresasService:EmpresasService) { 
+    this.empresasService.getEmpresas(1).subscribe(data=>{
+      console.log(data);
+      this.restaurantes = data;
+    });
   }
+
+  
+
+
 
 }

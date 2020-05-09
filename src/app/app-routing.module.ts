@@ -8,6 +8,14 @@ const routes: Routes = [
     path: 'home',
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
   },
+  {
+    path: 'productrestaurantes/:iddireccion',
+    loadChildren: () => import('./productrestaurantes/productrestaurantes.module').then( m => m.ProductrestaurantesPageModule)
+  },
+  {
+    path: 'direccionesempresas/:idempresa',
+    loadChildren: () => import('./direccionesempresas/direccionesempresas.module').then( m => m.DireccionesempresasPageModule)
+  },
   
 ];
 
