@@ -20,4 +20,8 @@ export class DireccionesEmpresasService {
     return this.http.get/*<Equipos[]>*/(`http://159.203.164.191:3000/api/direccionesempresas/${idempresa}`);
   }
 
+  getDireccion(iddireccion){
+    return this.http.get/*<Equipos[]>*/(`http://159.203.164.191:3000/api/direccionesempresas/info/${iddireccion}`);
+  }
+
 }
