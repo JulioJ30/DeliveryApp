@@ -4,17 +4,21 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)},
+  // {
+  //   path: 'home',
+  //   loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+  // },
   {
-    path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
-  },
-  {
-    path: 'productrestaurantes/:iddireccion',
+    path: 'tabs/home/productrestaurantes/:iddireccion',
     loadChildren: () => import('./productrestaurantes/productrestaurantes.module').then( m => m.ProductrestaurantesPageModule)
   },
+  // {
+  //   path: 'tabs/home/direccionesempresas/:idempresa',
+  //   loadChildren: () => import('./direccionesempresas/direccionesempresas.module').then( m => m.DireccionesempresasPageModule)
+  // },
   {
-    path: 'direccionesempresas/:idempresa',
-    loadChildren: () => import('./direccionesempresas/direccionesempresas.module').then( m => m.DireccionesempresasPageModule)
+    path: 'tabs',
+    loadChildren: () => import('./tabs/tabs.module').then( m => m.TabsPageModule)
   },
   
 ];
