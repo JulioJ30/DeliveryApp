@@ -7,7 +7,8 @@
 <ion-content>
 
   <ion-list>
-    <ion-item *ngFor="let direccion of direcciones" routerLink='/productrestaurantes/{{direccion.iddireccion}}'>
+    <!-- href="/tabs/home/productrestaurantes/{{direccion.iddireccion}}"  -->
+    <ion-item *ngFor="let direccion of direcciones" routerLink='home/productrestaurantes/{{direccion.iddireccion}}'  >
       <ion-avatar slot="start">
         <img src="assets/icon/gps.png">
       </ion-avatar>

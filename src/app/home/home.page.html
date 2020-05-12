@@ -12,7 +12,7 @@
     <ion-row>
         <ion-col *ngFor="let restaurante of restaurantes" size="6" no-padding no-margin>
 
-          <ion-card no-padding  routerLink='/direccionesempresas/{{restaurante.idempresa}}'>
+          <ion-card no-padding  routerLink='direccionesempresas/{{restaurante.idempresa}}'>
             <img src="{{restaurante.img}}">
             <ion-card-header>
               <!-- <ion-card-subtitle>Card Subtitle</ion-card-subtitle> -->
@@ -24,4 +24,8 @@
     </ion-row> 
   </ion-grid>
 </ion-content>
+
+
+
+
 
