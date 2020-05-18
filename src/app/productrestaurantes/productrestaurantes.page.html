@@ -1,14 +1,47 @@
+
 <ion-header>
   <ion-toolbar>
-    <ion-title>Productos Restaurantes</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button ></ion-back-button>
+    </ion-buttons>
+    <ion-title>Productos</ion-title>
   </ion-toolbar>
-    <div id="map"></div>
-  
 </ion-header>
 
-<ion-content>
+<div id="map"></div>
 
-    
-    <!-- <h2 > {{direccion.referencia}} </h2> -->
+<ion-content>
+<ion-list>
+  <!-- INFORMACION DEL RESTAURANTE
+  <ion-list-header>
+    Información
+  </ion-list-header>
+   DISTRITO 
+  <ion-item>
+    <ion-label>Distrito:</ion-label>
+    <ion-label>{{distrito}}</ion-label>
+  </ion-item>
+  DIRECCION
+  <ion-item>
+    <ion-label>Dirección:</ion-label>
+    <ion-label>{{direccioninfo}}</ion-label>
+  </ion-item>
+  REFERENCIA
+  <ion-item>
+    <ion-label>Referencia:</ion-label>
+    <ion-label>{{referencia}}</ion-label>
+  </ion-item> -->
+  <!-- HORARIO DE ATENCIÓN -->
+  <ion-list-header>
+    Horario de atención
+  </ion-list-header>
+  <ion-item>
+    <ion-label>{{hora1}}</ion-label>
+    <ion-label>Hasta</ion-label>
+    <ion-label>{{hora2}}</ion-label>
+  </ion-item>
+
+
+</ion-list>
 
 </ion-content>

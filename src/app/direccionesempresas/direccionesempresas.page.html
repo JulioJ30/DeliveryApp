@@ -1,6 +1,9 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>direccionesempresas</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Sedes</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -8,7 +11,7 @@
 
   <ion-list>
     <!-- href="/tabs/home/productrestaurantes/{{direccion.iddireccion}}"  -->
-    <ion-item *ngFor="let direccion of direcciones" routerLink='home/productrestaurantes/{{direccion.iddireccion}}'  >
+    <ion-item *ngFor="let direccion of direcciones" routerLink='{{direccion.iddireccion}}'  >
       <ion-avatar slot="start">
         <img src="assets/icon/gps.png">
       </ion-avatar>

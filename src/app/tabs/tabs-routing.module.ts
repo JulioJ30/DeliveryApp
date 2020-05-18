@@ -13,12 +13,12 @@ const routes: Routes = [
         path: 'home',
         loadChildren: () => import('../home/home.module').then(m => m.HomePageModule)
       },
-      {
+      { //DIRECCIONES DE EMPRESAS
         path: 'home/direccionesempresas/:idempresa',
         loadChildren: () => import('../direccionesempresas/direccionesempresas.module').then(m => m.DireccionesempresasPageModule)
       },
-      {
-        path: 'home/productrestaurantes/:iddireccion',
+      { // PRODUCTOS DE LOS RESTAURANTES
+        path: 'home/direccionesempresas/:idempresa/:iddireccion',
         loadChildren: () => import('../productrestaurantes/productrestaurantes.module').then(m => m.ProductrestaurantesPageModule)
       },
       // PERFIL
