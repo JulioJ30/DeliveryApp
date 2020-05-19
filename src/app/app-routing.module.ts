@@ -20,6 +20,11 @@ const routes: Routes = [
     path: 'tabs',
     loadChildren: () => import('./tabs/tabs.module').then( m => m.TabsPageModule)
   },
+  // {
+  //   path: 'direccionesusuarios',
+  //   loadChildren: () => import('./direccionesusuarios/direccionesusuarios.module').then( m => m.DireccionesusuariosPageModule)
+  // },
+
   
 ];
 

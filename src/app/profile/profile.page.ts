@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+import { DireccionesusuariosPage } from '../direccionesusuarios/direccionesusuarios.page';
+
 
 @Component({
   selector: 'app-profile',
@@ -7,9 +10,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfilePage implements OnInit {
 
-  constructor() { }
+  constructor(private modalCrtl:ModalController) { 
+
+  }
 
   ngOnInit() {
+  }
+
+
+  // ABRIR MODAL PARA REGISTRAR DIRECCIONES
+  async RegistrarDirecciones(){
+
+      const modal = await this.modalCrtl.create({
+        component: DireccionesusuariosPage,
+      });
+
+      await modal.present();
   }
 
 }

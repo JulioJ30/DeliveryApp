@@ -31,6 +31,7 @@
     <ion-label>Referencia:</ion-label>
     <ion-label>{{referencia}}</ion-label>
   </ion-item> -->
+
   <!-- HORARIO DE ATENCIÓN -->
   <ion-list-header>
     Horario de atención
@@ -40,8 +41,42 @@
     <ion-label>Hasta</ion-label>
     <ion-label>{{hora2}}</ion-label>
   </ion-item>
-
-
 </ion-list>
+
+
+<!-- PLATOS A LA CARTA -->
+<ion-list>
+  <ion-list-header>
+    Platos a la Carta
+  </ion-list-header>
+  <ion-item *ngFor="let plato of platos">
+    <ion-label slot="start">{{plato.nombreplato}} - {{plato.descripcion}}</ion-label>
+    <ion-label slot="end">S/. {{plato.precio}}</ion-label>
+
+  </ion-item>
+</ion-list>
+<!-- MENU DEL DIA -->
+<ion-list>
+  <ion-list-header>
+    Menu del día
+  </ion-list-header>
+  <ion-item *ngFor="let menu of menus">
+    <ion-label slot="start">{{menu.nombreplato}} </ion-label>
+    <ion-label slot="end">S/. {{menu.precios}}</ion-label>
+
+  </ion-item>
+</ion-list>
+<!-- PRODUCTOS -->
+<ion-list>
+  <ion-list-header>
+    Productos
+  </ion-list-header>
+  <ion-item *ngFor="let producto of productos">
+    <ion-label slot="start">{{producto.producto}} </ion-label>
+    <ion-label slot="end">S/. {{producto.precio}}</ion-label>
+
+  </ion-item>
+</ion-list>
+
 
 </ion-content>
