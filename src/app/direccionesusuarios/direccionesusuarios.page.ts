@@ -4,6 +4,10 @@ import { ModalController } from '@ionic/angular';
 import { Platform } from '@ionic/angular';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 
+// SERVICIOS
+import {GoogleMapsService} from '../services/googlemaps.service';
+
+
 @Component({
   selector: 'app-direccionesusuarios',
   templateUrl: './direccionesusuarios.page.html',
@@ -13,14 +17,18 @@ export class DireccionesusuariosPage implements OnInit {
 
   data:string;
   //Set the properties in this class
-  long: any; //longitude
-  lati: any; //latitude
-
+  lng:number = -76.1347185; //longitude
+  lat:number =-13.4177938; //latitude
+  
   options = {
     maximumAge: 3000, timeout: 5000, enableHighAccuracy: true
   };
 
-  constructor(private geolocation:Geolocation,private platform: Platform,private modalCrtl:ModalController,) { 
+  constructor(private geolocation:Geolocation,private platform: Platform,private modalCrtl:ModalController,private maps:GoogleMapsService) { 
+
+    this.platform.ready().then(()=>{
+      this.maps.MostrarMapaIndividual('map',this.lat ,this.lng,"Plaza  de Armas");
+    });
 
   }
 
@@ -34,12 +42,17 @@ export class DireccionesusuariosPage implements OnInit {
 
     // use geolocation to get user's device coordinates
     getCurrentCoordinates() {
-      this.geolocation.getCurrentPosition(this.options).then((resp) => {
-        this.lati = resp.coords.latitude;
-        this.long = resp.coords.longitude;
-       }).catch((error) => {
-         console.log('Error getting location', error);
-       });
+      this.maps.MostrarMapaIndividual('map',-13.440235707136699 ,-76.14049022833623,"Plaza  de Armas");
+
+      // this.geolocation.getCurrentPosition(this.options).then((resp) => {
+      //   this.lat = resp.coords.latitude;
+      //   this.lng = resp.coords.longitude;
+      //   this.maps.MostrarMapaIndividual('map',this.lat ,this.lng,"Plaza  de Armas");
+      //   // -13.440235707136699, -76.14049022833623
+
+      //  }).catch((error) => {
+      //    console.log('Error getting location', error);
+      //  });
     }
 
  

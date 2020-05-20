@@ -11,10 +11,31 @@
 
 <ion-content>
 
-  <ion-button (click)="getCurrentCoordinates()" >
-    position
-  </ion-button>
+  <div id="map"></div>
+  <ion-grid>
+    <ion-row>
+      <ion-col width-50 style="text-align: center">
+          <ion-button (click)="getCurrentCoordinates()">
+            <ion-icon name="navigate-circle-outline"></ion-icon>
+          </ion-button>
+      </ion-col>
+    </ion-row> 
+  </ion-grid>
+
+  <form onsubmit="">
+    <ion-list lines="full" class="ion-no-margin ion-no-padding">
+      <ion-item>
+        <ion-label position="stacked">Nombre Dirección <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input required type="text" oninput="" placeholder="Mi casa" ></ion-input>
+      </ion-item>
+     
+    </ion-list>
+    <div class="ion-padding">
+      <ion-button expand="block" type="submit" class="ion-no-margin">Guardar</ion-button>
+    </div>
+  </form>
 
 
-    {{long}} - {{lati}}
+
+    {{lng}} | {{lat}}
 </ion-content>
