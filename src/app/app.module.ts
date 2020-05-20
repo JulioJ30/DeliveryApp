@@ -21,6 +21,8 @@ import {GooglePlus} from '@ionic-native/google-plus/ngx';
 import {Facebook} from '@ionic-native/facebook/ngx';
 //HTTP
 import {HttpClientModule} from '@angular/common/http';
+import {HTTP} from '@ionic-native/http/ngx'
+
 
 //GEOLOCATION
 import {Geolocation} from '@ionic-native/geolocation/ngx';
@@ -41,7 +43,8 @@ import {Geolocation} from '@ionic-native/geolocation/ngx';
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     GooglePlus,
     Facebook,
-    Geolocation
+    Geolocation,
+    HTTP
   ],
   bootstrap: [AppComponent]
 })

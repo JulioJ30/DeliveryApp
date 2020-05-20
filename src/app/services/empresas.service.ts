@@ -2,13 +2,18 @@ import { Injectable } from '@angular/core';
 // HTTP
 import { HttpClient} from '@angular/common/http';
 
+import {HTTP} from '@ionic-native/http/ngx';
+
 // ENTIDAD
-//import { Equipos } from './models/equipos.entidad';
+import { Empresas } from '../models/empresas.entidad';
+import { from } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmpresasService {
+
+  data:any;
 
   // INSTANCIAMOS CLASE HTTPCLIENT
   constructor(private http: HttpClient) {
