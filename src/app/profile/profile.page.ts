@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { DireccionesusuariosPage } from '../direccionesusuarios/direccionesusuarios.page';
+// import { Ubicaciones } from '../models/direccionesusuarios.entidad';
 
 
 @Component({

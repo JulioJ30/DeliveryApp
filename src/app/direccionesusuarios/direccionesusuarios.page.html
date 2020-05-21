@@ -22,11 +22,11 @@
     </ion-row> 
   </ion-grid>
 
-  <form onsubmit="">
+  <form (ngSubmit)="guardarDireccion(f)" #f="ngForm" novalidate>
     <ion-list lines="full" class="ion-no-margin ion-no-padding">
       <ion-item>
         <ion-label position="stacked">Nombre Dirección <ion-text color="danger">*</ion-text></ion-label>
-        <ion-input required type="text" oninput="" placeholder="Mi casa" ></ion-input>
+        <ion-input required type="text" #descripcion="ngModel" ngModel name="descripcion" placeholder="Mi casa" ></ion-input>
       </ion-item>
      
     </ion-list>
