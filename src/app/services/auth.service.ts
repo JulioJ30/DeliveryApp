@@ -53,9 +53,11 @@ export class AuthService {
     return this.google.login({}).then(res => {
       const userdatagoogle = res;
 
+      // REGISTRAMOS
       this.usuarioE.RegistrarGF(userdatagoogle.familyName,userdatagoogle.givenName,userdatagoogle.email).subscribe((data:any)=>{
 
-          this.usuarioE.setInfoGoogle(
+          // GUARDAMOS INFO EN LOCAL STORAGE
+          this.usuarioE.setInfoGoogleFacebook(
             userdatagoogle.email,
             data.id,
             userdatagoogle.givenName,
@@ -73,14 +75,37 @@ export class AuthService {
 
   //LOGIN FACEBOOK
   loginWithFacebook(){
-   return this.fb.login(['public_profile', 'user_friends', 'email']).then((res: FacebookLoginResponse) => 
+   return this.fb.login(['public_profile', 'email']).then((res: FacebookLoginResponse) => 
     {
-      //const userdatafacebook = res;
+     
+      // OBTENEMOS INFO DE FACEBOOK
+      this.usuarioE.getInfoFacebook(res.authResponse.accessToken).subscribe((dataf:any)=>{
+
+          //REGISTRAMOS 
+          this.usuarioE.RegistrarGF(dataf.last_name,dataf.first_name,dataf.email).subscribe((data:any)=>{
+
+            // GUARDAMOS INFO EN LOCAL STORAGE
+            this.usuarioE.setInfoGoogleFacebook(
+              dataf.email,
+              data.id,
+              dataf.first_name,
+              dataf.last_name,
+              `https://graph.facebook.com/${dataf.id}/picture?type=square`
+            );
+
+          });
+
+      });
+
+
+
       return this.AFauth.auth.signInWithCredential(auth.FacebookAuthProvider.credential(res.authResponse.accessToken));
-      //console.log('Logged into Facebook!', res)
+      
     }
   )
   .catch(e => console.log('Error logging into Facebook', e));
+
+
   }
 
 }

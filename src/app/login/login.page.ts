@@ -23,7 +23,7 @@ export class LoginPage implements OnInit {
   datasesion:any;
 
   // token:string = "token";
-  // response:string ="response";
+  response:string ="response";
 
 
   constructor(
@@ -93,23 +93,16 @@ export class LoginPage implements OnInit {
       this.router.navigate(['/tabs/']);
     }).catch(err => {
       alert(err);
-      // console.log(err);
     })
-    // this.authService.loginWithGoogle().then((rest:any)=>{
-    //   this.response = JSON.stringify(rest);
-    //   this.token =rest.accessToken;
-    // });
   }
 
   loginFacebook(){
+
     this.authService.loginWithFacebook().then(()=>{
       this.router.navigate(['/tabs/']);
     }).catch(err => {
       alert(err );
-      console.log(err);
-    })
-    
-    
+    })  
 
   }
 

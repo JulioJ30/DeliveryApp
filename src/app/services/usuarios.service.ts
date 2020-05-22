@@ -93,10 +93,8 @@ export class UsuariosService {
   }
 
   //INFORMACION DEL USAURIO
-  setInfoGoogle(correo:string,id:number,nombres:string,apellidos:string,img:string){
+  setInfoGoogleFacebook(correo:string,id:number,nombres:string,apellidos:string,img:string){
     
-      
-
       this.datasesion = {
         idusuario   : id,
         correo      : correo,
@@ -107,8 +105,13 @@ export class UsuariosService {
 
       // GUARDAMOS DATOS EN LOCAL STORAGE
       window.localStorage.setItem("datasesion",JSON.stringify(this.datasesion));
-
     
+  }
+
+ 
+
+  getInfoFacebook(token:string){
+    return this.http.get(`https://graph.facebook.com/me?fields=id,name,first_name,last_name,email&access_token=${token}`);
   }
 
 }
