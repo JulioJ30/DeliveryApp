@@ -1,5 +1,10 @@
 <ion-header>
   <ion-toolbar>
+
+    <ion-buttons slot="start">
+      <ion-menu-button menu="menu1"></ion-menu-button>
+    </ion-buttons>
+
     <ion-title>Mi cuenta</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -11,18 +16,18 @@
 
     <ion-item >
       <ion-avatar class="avatar">
-        <img src="https://happytravel.viajes/wp-content/uploads/2020/04/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png">
+        <img src="{{imagenperfil}}">
       </ion-avatar>
       
     </ion-item>
 
     <ion-item>
       <ion-label>Datos:</ion-label>
-      <ion-label>Julio Amoretti Almeyda</ion-label>
+      <ion-label>{{nombrecompleto}}</ion-label>
     </ion-item>
     <ion-item>
       <ion-label>Correo:</ion-label>
-      <ion-label>julio302318@gmail.com</ion-label>
+      <ion-label>{{correo}}</ion-label>
     </ion-item>
 
   </ion-list>
@@ -39,13 +44,12 @@
         </ion-item>
     </ion-list-header>
 
-    <ion-item>
-        <ion-label>Mi casa</ion-label>
+    <ion-item *ngFor="let direccion of direcciones">
+        <ion-label>{{direccion.descripcion}}</ion-label>
     </ion-item>
-    <ion-item>
-      <ion-label>Mi casa 2</ion-label>
-  </ion-item>
+
 
   </ion-list>
 
 </ion-content>
+

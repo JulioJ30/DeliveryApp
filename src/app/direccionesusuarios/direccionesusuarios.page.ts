@@ -6,10 +6,15 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
 // SERVICIOS
 import {GoogleMapsService} from '../services/googlemaps.service';
 import {DirecionesUsuariosService} from '../services/direccionesusuarios.service';
+import {UsuariosService} from '../services/usuarios.service';
+import {AlertarService} from '../services/alertas.service';
+import {LoadingService} from '../services/loading.service';
+
+
+
 
 import { NgModel } from '@angular/forms';
 
-import { AlertController } from '@ionic/angular';
 
 
 @Component({
@@ -19,12 +24,14 @@ import { AlertController } from '@ionic/angular';
 })
 export class DireccionesusuariosPage implements OnInit {
 
-  // data:string;
-  //Set the properties in this class
+
   lng:number = 0; //longitude
   lat:number = 0; //latitude
   direcusuE = {};//DireccionesUsuarios;
-  // direcusu2:DireccionesUsuarios;
+  alert:any;
+  carga:any;
+
+
 
   options = {
     maximumAge: 3000, timeout: 5000, enableHighAccuracy: true
@@ -33,10 +40,10 @@ export class DireccionesusuariosPage implements OnInit {
   constructor(
       private geolocation:Geolocation,private platform: Platform,
       private modalCrtl:ModalController,private maps:GoogleMapsService,
-      private alert:AlertController,private direcusuService:DirecionesUsuariosService
+      private alertS:AlertarService,private direcusuService:DirecionesUsuariosService,
+      private usuarioE:UsuariosService,private loading:LoadingService
   ) { 
 
-    // this.direcusuE =  Direccionesusuario
     // LAT Y LNG DE PLAZA DE ARMAS DE CHINCHA
     this.platform.ready().then(()=>{
       this.maps.MostrarMapaIndividual('map2',-13.4177938,-76.1347185,"Plaza  de Armas");
@@ -51,14 +58,15 @@ export class DireccionesusuariosPage implements OnInit {
   CerrarModal(){
     this.modalCrtl.dismiss();
   }
-  // use geolocation to get user's device coordinates
-  getCurrentCoordinates() {
-    // this.maps.MostrarMapaIndividual('map2',-13.440235707136699 ,-76.14049022833623,"Plaza  de Armas");
 
+  //OBTENEMOS NUESTRA UBICACION
+  getCurrentCoordinates() {
+ 
     this.geolocation.getCurrentPosition(this.options).then((resp) => {
+
       this.lat = resp.coords.latitude;
       this.lng = resp.coords.longitude;
-      this.maps.MostrarMapaIndividual('map',this.lat ,this.lng,"Plaza  de Armas");
+      this.maps.MostrarMapaIndividual('map2',this.lat ,this.lng,"Mi Ubicación");
       // -13.440235707136699, -76.14049022833623
 
       }).catch((error) => {
@@ -67,33 +75,41 @@ export class DireccionesusuariosPage implements OnInit {
   }
 
   //GUARDAR DIRECCION
-  guardarDireccion(form:NgModel){
-    // console.log(form.value);
+  async guardarDireccion(form:NgModel){
+    
     if(form.value.descripcion != ""){
       
-      //REGISTRAMOS
-      this.direcusuService.setDirecciones(1,form.value.descripcion,50,100);
-      
+      // MOSTRAMOS CARGA
+     this.carga = await this.loading.MostarCarga("");
+     this.carga.present();
 
+      // ID DE USUARIOS
+      let idusuario = this.usuarioE.getID();
+
+      //REGISTRAMOS
+      this.direcusuService.setDirecciones(idusuario,form.value.descripcion,this.lat ,this.lng).subscribe(async (data)=>{
+        form.reset();
+        // OCULTAMOS CARGA
+        this.carga.dismiss();
+        // MOSTRAMOS  MENSAJE
+        this.alert = await this.alertS.Informar("Registrado correctamente");
+        this.alert.present();
+        //CERRAMOS MODAL
+        this.modalCrtl.dismiss();
+
+      },error=>{
+        alert(error);
+      })
+
+      
     }else{
-      this.presentAlert();
+      this.alert = await this.alertS.Informar("Por favor complete los datos");
+      this.alert.present();
     }
     
   }
 
 
-  // ALERTA
-  async presentAlert() {
-    const alert = await this.alert.create({
-      // header:'<ion-icon name="alert-circle-outline"></ion-icon>',
-      header: 'Por favor complete la descripción y su ubicación',
-      subHeader: 'Delivery',
-      message: '<ion-icon name="alert-circle-outline"></ion-icon>',
-      buttons: ['OK']
-    });
 
-    await alert.present();
-  }
- 
 
 }

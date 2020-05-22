@@ -2,30 +2,25 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: 'login', loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)},
-  // {
-  //   path: 'home',
-  //   loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
-  // },
-  {
-    path: 'tabs/home/productrestaurantes/:iddireccion',
-    loadChildren: () => import('./productrestaurantes/productrestaurantes.module').then( m => m.ProductrestaurantesPageModule)
+  { path: '', redirectTo: window.localStorage.getItem("datasesion") != null ? 'tabs':'inicio' ,pathMatch: 'full' },
+  { 
+    path: 'login', 
+    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
   },
-  // {
-  //   path: 'tabs/home/direccionesempresas/:idempresa',
-  //   loadChildren: () => import('./direccionesempresas/direccionesempresas.module').then( m => m.DireccionesempresasPageModule)
-  // },
+
   {
     path: 'tabs',
     loadChildren: () => import('./tabs/tabs.module').then( m => m.TabsPageModule)
   },
-  // {
-  //   path: 'direccionesusuarios',
-  //   loadChildren: () => import('./direccionesusuarios/direccionesusuarios.module').then( m => m.DireccionesusuariosPageModule)
-  // },
+  {
+    path: 'inicio',
+    loadChildren: () => import('./inicio/inicio.module').then( m => m.InicioPageModule)
+  },
+  {
+    path: 'registrarusuario',
+    loadChildren: () => import('./registrarusuario/registrarusuario.module').then( m => m.RegistrarusuarioPageModule)
+  },
 
-  
 ];
 
 @NgModule({

@@ -1,0 +1,43 @@
+<ion-content class="ion-padding" class="back-claro">
+
+  <div class="vertical-center"> 
+    <div class="center"> 
+      <ion-img src="assets/icon/user.svg" class="ion-align-self-end icon"></ion-img> 
+    </div> 
+  </div> 
+</ion-content>
+
+<ion-footer class="ion-no-border footer-login back-claro ">
+  <ion-toolbar class="back-claro">
+
+    <form autocomplete="off" (ngSubmit)="doRegister(f)" #f="ngForm">
+      <ion-item>
+        <ion-label position="stacked" >Apellidos:</ion-label>
+        <ion-input required type="text" #apellidos="ngModel" ngModel name="apellidos"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked" >Nombres:</ion-label>
+        <ion-input required type="text" #nombres="ngModel" ngModel name="nombres"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked" >Correo:</ion-label>
+        <ion-input required type="email" #correo="ngModel" ngModel name="correo"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked" >Clave:</ion-label>
+        <ion-input required type="password" #clave="ngModel" ngModel name="clave"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked" >Confirmación clave:</ion-label>
+        <ion-input required type="password" #clave2="ngModel" ngModel name="clave2"></ion-input>
+      </ion-item>
+      <ion-button class="ion-margin-top border-radius" type="submit" expand="block">Registrarme</ion-button>
+   
+
+    </form>
+
+
+  </ion-toolbar>
+</ion-footer>
+
+

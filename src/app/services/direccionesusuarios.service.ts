@@ -15,6 +15,7 @@ export class DirecionesUsuariosService {
 
   }
 
+  //REGISTRAR DIRECCIONES DE USUARIOS
   setDirecciones(idusuario:number,descripcion:string,lat:number,lng:number){
 
     let headers = new HttpHeaders();
@@ -28,9 +29,14 @@ export class DirecionesUsuariosService {
         lng:lng
     }
 
-    this.http.post("http://159.203.164.191:3000/api/direccionesusuarios/registrar/",datos,{headers:headers}).subscribe(data=>{
-        console.log(data);
-    })
+    return this.http.post("http://159.203.164.191:3000/api/direccionesusuarios/registrar/",datos,{headers:headers});
+    
+  }
+
+  getDirecciones(idusuario:number){
+
+    return this.http.get(`http://159.203.164.191:3000/api/direccionesusuarios/${idusuario}`);
+
   }
  
 
