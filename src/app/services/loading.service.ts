@@ -1,8 +1,12 @@
+import { Injectable } from '@angular/core';
+
 import { Component } from '@angular/core';
 // HTTP
 import {LoadingController } from '@ionic/angular';
 
-
+@Injectable({
+  providedIn: 'root'
+})
 export class LoadingService {
 
   // INSTANCIAMOS CLASE HTTPCLIENT
@@ -10,12 +14,12 @@ export class LoadingService {
 
   }
 
-  // async presentLoading() {
-  //   const loading = await this.loading.create({
-  //     message: 'Please wait...',
-  //     duration: 2000
-  //   });
-  //   return await loading.present();
-  // }
+  async MostarCarga(mensaje:string) {
+    const carga = await this.loading.create({
+      message: mensaje,
+      // duration: 2000
+    });
+    return carga;
+  }
 
 }

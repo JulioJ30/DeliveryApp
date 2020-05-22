@@ -18,23 +18,10 @@ export class HomePage implements OnInit {
       this.restaurantes = data;
     });
 
+    // console.log(window.localStorage.getItem("datasesion"));
+
   }
 
-    // async getEmpresas(){
-    //   let native =  this.http.get(`http://159.203.164.191:3000/api/empresas/1`,{},{
-    //     'Content-Type':'application/json'
-    //   });
-
-    //   from(native).pipe(
-    //     finalize(()=> this.rest3 = "4")
-    //   ).subscribe(data=>{
-    //     let parsed = JSON.parse(data.data);
-    //     this.restaurantes = parsed;
-
-    //   }), error =>{
-    //     this.rest = JSON.stringify(error);
-    //   }
-    // }
   
 
   ngOnInit(){ 

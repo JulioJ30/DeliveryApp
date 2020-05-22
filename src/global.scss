@@ -25,6 +25,22 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
 
+// COLORES
+.back-primary{
+    background-color: #4a8bff;
+    --background:/*#3171e0*/#4a8bff;
+}
+
+.back-claro{
+    
+    background-color: #f6f6f4;
+    --background:/*#3171e0*/#f6f6f4;
+}
+
+//BORDE
+.border-radius{
+    --border-radius: 16px;
+}
 
 // PARA ALERT
 .alert-title{
