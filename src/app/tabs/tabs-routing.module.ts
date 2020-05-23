@@ -26,6 +26,15 @@ const routes: Routes = [
         path: 'profile',
         loadChildren: () => import('../profile/profile.module').then(m => m.ProfilePageModule)
       },
+      // PEDIDOS
+      {
+        path: 'pedidos/pedidosconfirmar',
+        loadChildren: () => import('../pedidosconfirmar/pedidosconfirmar.module').then(m => m.PedidosconfirmarPageModule)
+      },
+      {
+        path: 'pedidos',
+        loadChildren: () => import('../pedidos/pedidos.module').then(m => m.PedidosPageModule)
+      },
       {
         path: '',
         redirectTo: '/tabs/home',
