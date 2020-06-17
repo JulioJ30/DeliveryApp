@@ -1,0 +1,118 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Detalles</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<div id="map"></div>
+
+<ion-content>
+  <ion-list>
+    <ion-item color="primary">
+      <ion-label>Datos envío</ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>
+        <h3>{{descripcion}}</h3>
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>
+        <h3>{{direccionusu}}</h3>
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>
+        <h3>Fecha de envío: {{new_fecha}} - 
+          hora de envío: {{hora1}}
+        </h3>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-list>
+    <ion-list *ngIf="detallesMenu?.length > 0; else mensaje">
+      <ion-item color="primary">
+        <ion-label>Menú</ion-label>
+      </ion-item>
+      <ion-item *ngFor="let menu of detallesMenu">
+        <ion-label>
+          <h3>{{menu.menu}} - {{menu.clasificacion}}</h3>
+        </ion-label>
+      </ion-item>
+      <ion-item *ngFor="let menu of detallesMenu">
+          <ion-label><h3>{{menu.nombremenu}} - S/{{menu.Precio_plato}}</h3></ion-label>
+          <ion-note slot="end" color="success">
+            <ion-label>
+              <h2>{{menu.cantidad}}</h2>
+            </ion-label>
+          </ion-note>
+      </ion-item>
+    </ion-list>
+    <ion-list *ngIf="detallesPlato?.length > 0; else mensaje">
+      <ion-item color="primary">
+        <ion-label>Platos a la carta</ion-label>
+      </ion-item>
+      <ion-item *ngFor="let platos of detallesPlato">
+        <ion-label><h3>{{platos.descripcion_plato_carta}} - S/{{platos.Precio_plato_carta}}</h3></ion-label>
+        <ion-note slot="end" color="success">
+          <ion-label>
+            <h2>{{platos.cantidad}}</h2>
+          </ion-label>
+        </ion-note>
+      </ion-item>
+    </ion-list>
+    <ion-list *ngIf="detallesProducto?.length > 0; else mensaje">
+      <ion-item color="primary">
+        <ion-label>Productos</ion-label>
+      </ion-item>
+      <ion-item *ngFor="let productos of detallesProducto">
+        <ion-label><h3>{{productos.producto}} - S/{{productos.precio}}</h3></ion-label>
+        <ion-note slot="end" color="success">
+          <ion-label>
+            <h2>{{productos.cantidad}}</h2>
+          </ion-label>
+        </ion-note>
+      </ion-item>
+    </ion-list>
+    <!-- <ion-item>
+      <ion-label><h3>Cantidad total del pedido</h3></ion-label>
+      <ion-note slot="end" color="primary">
+        <ion-label>
+          <h2>{{cantidad}}</h2>
+        </ion-label
+      ></ion-note>
+    </ion-item> -->
+
+    <ion-item>
+      <ion-label><h3>Precio total del Pedido</h3></ion-label>
+      <ion-note slot="end" color="success">
+        <ion-label>
+          <h2>S/{{total}}</h2>
+        </ion-label>
+      </ion-note>
+    </ion-item>
+    
+    <ion-item>
+      <ion-label>
+        <h3>Tiempo de llegada: {{xtiempo}}</h3>
+      </ion-label>
+    </ion-item>
+    
+  </ion-list>
+  <section >
+    <ion-button (click)="AceptarPedido()" expand="block">Aceptar Pedido</ion-button>
+  </section>
+  <ng-template #mensaje>
+<!-- 
+    <ion-text  >
+      <h1 class="ion-text-center">No tienes pedidos :(</h1>
+
+    </ion-text> -->
+  </ng-template>
+  
+</ion-content>

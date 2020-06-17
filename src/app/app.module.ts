@@ -27,6 +27,15 @@ import {HTTP} from '@ionic-native/http/ngx'
 //GEOLOCATION
 import {Geolocation} from '@ionic-native/geolocation/ngx';
 
+//FONTAWESOME
+import { FontAwesomeModule,FaIconLibrary } from '@fortawesome/angular-fontawesome';
+
+import { fas } from '@fortawesome/free-solid-svg-icons';
+import { far } from '@fortawesome/free-regular-svg-icons';
+import { fab } from '@fortawesome/free-brands-svg-icons';
+
+import { DatePipe } from '@angular/common'
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -35,7 +44,8 @@ import {Geolocation} from '@ionic-native/geolocation/ngx';
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFirestoreModule,
     AngularFireAuthModule,
-    HttpClientModule
+    HttpClientModule,
+    FontAwesomeModule
   ],
   providers: [
     StatusBar,
@@ -44,8 +54,14 @@ import {Geolocation} from '@ionic-native/geolocation/ngx';
     GooglePlus,
     Facebook,
     Geolocation,
-    HTTP
+    HTTP,
+    DatePipe
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule {
+
+  constructor(library: FaIconLibrary){
+    library.addIconPacks(fas, far, fab);
+  }
+}

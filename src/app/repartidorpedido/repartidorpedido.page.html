@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Pedidos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-grid>
+    <ion-row>
+        <ion-col *ngFor="let ped of pedidosRe" size="12" no-padding no-margin>
+
+          <ion-card no-padding  routerLink='repartidorpedido-detalle/{{ped.idpedido}}' class="card">
+            <!-- <img src="{{restaurante.img}}" class="imagenes"> -->
+            <ion-card-header>
+              <!-- <ion-card-subtitle>Card Subtitle</ion-card-subtitle> -->
+              <ion-card-subtitle>{{ped.usuario}}</ion-card-subtitle>
+              <ion-card-title>{{ped.direccion_usuario}} <fa-icon icon="shipping-fast" size="2x" style="float: inline-end"></fa-icon> </ion-card-title>
+            </ion-card-header>
+
+            <ion-card-content>
+              hora entrega: {{ped.horaentrega}}
+            </ion-card-content>
+          </ion-card>
+
+        </ion-col> 
+    </ion-row> 
+  </ion-grid>
+</ion-content>
