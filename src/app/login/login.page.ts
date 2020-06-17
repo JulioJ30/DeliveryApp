@@ -21,7 +21,7 @@ export class LoginPage implements OnInit {
   carga:any;
   alerta: any;
   datasesion:any;
-
+  idtipousuario:any;
   // token:string = "token";
   response:string ="response";
 
@@ -56,12 +56,27 @@ export class LoginPage implements OnInit {
       this.usuarioE.Login(usuario,clave).subscribe(async (data)=>{
         // console.log(data);
         this.datasesion = data[0];
+
+        // console.log(this.idtipousuario);
+
         if(this.datasesion != undefined){
           
           // GUARDAMOS DATOS EN LOCAL STORAGE
           window.localStorage.setItem("datasesion",JSON.stringify(this.datasesion));
+
           //REDIRECCIONAMOS
-          this.router.navigate(['/tabs/']);
+          let tipousuario = JSON.parse(window.localStorage.getItem('datasesion'));
+
+          let usu = tipousuario.idtipousuario;
+          console.log(usu);
+
+          if(usu != 3)
+          {
+            this.router.navigate(['/tabs/']);
+          }else{
+            this.router.navigate(['/tabs-repartidor/']);
+          }
+          
 
         }else{
           this.alerta = await this.alert.Informar("Credenciales incorrectas");
