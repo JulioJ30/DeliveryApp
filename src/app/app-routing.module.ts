@@ -19,11 +19,16 @@ const routes: Routes = [
   {
     path: 'registrarusuario',
     loadChildren: () => import('./registrarusuario/registrarusuario.module').then( m => m.RegistrarusuarioPageModule)
-  },  {
+  },
+  {
     path: 'tabs-repartidor',
     loadChildren: () => import('./tabs-repartidor/tabs-repartidor.module').then( m => m.TabsRepartidorPageModule)
   },
-
+  {
+    path: 'registrarusuario',
+    loadChildren: () => import('./registrarusuario/registrarusuario.module').then( m => m.RegistrarusuarioPageModule)
+  },
+];
 
 
 ];

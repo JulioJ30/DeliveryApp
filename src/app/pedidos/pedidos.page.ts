@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PedidosPage implements OnInit {
 
-  constructor() { }
+
+  constructor(
+  ) 
+  { 
+    // console.log(this.pedidosS.pedidostmp);
+  }
 
   ngOnInit() {
   }
+
 
 }

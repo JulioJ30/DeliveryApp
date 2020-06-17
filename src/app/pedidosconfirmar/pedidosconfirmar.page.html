@@ -1,0 +1,74 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Pedidos por Confirmar</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreem>
+
+  <ion-list>
+    <ion-item *ngFor="let pedido of pedidos">
+      <ion-avatar slot="start">
+        <!-- <img src="./avatar-finn.png"> -->
+        <ion-icon name="arrow-forward-outline"></ion-icon>
+      </ion-avatar>
+      <ion-label>
+        <h2>{{pedido.nombre}}</h2>
+        <p>S/. {{pedido.precio}}</p>
+      </ion-label>
+      <ion-buttons>
+        <ion-button (click)="disminuir(pedido.id,pedido.tipo)">
+          <ion-icon name="remove-circle-outline"></ion-icon>
+        </ion-button> 
+        <ion-label>
+          {{pedido.cantidad}}
+        </ion-label>
+        <ion-button (click)="aumentar(pedido.id,pedido.tipo)">
+          <ion-icon name="add-circle-outline"></ion-icon>
+        </ion-button> 
+        |
+        <ion-button (click)="eliminar(pedido.id,pedido.tipo)">
+          <ion-icon name="trash-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-item>
+
+    <ion-list-header>
+      Mis Direcciones
+    </ion-list-header>
+
+    <ion-item>
+      <ion-label>Enviar a:</ion-label>
+      <ion-select placeholder="Select One">
+        <ion-select-option value="{{direccion.iddireccion_usuario}}" *ngFor="let direccion of direcciones">{{direccion.descripcion}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-list-header>
+      Precio:
+    </ion-list-header>
+    <ion-item>
+        <ion-label >Sub Total:</ion-label>
+        <ion-label class="text-d" >S/. {{subtotal}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label >Delivery:</ion-label>
+      <ion-label class="text-d">S/. 5.00</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label class="bold">Total:</ion-label>
+      <ion-label class="text-d bold">S/. {{total}}</ion-label>
+    </ion-item>
+
+    
+      <ion-button expand="block">Comprar</ion-button>  
+   
+
+  </ion-list>
+
+
+
+</ion-content>
