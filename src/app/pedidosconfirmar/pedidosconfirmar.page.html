@@ -7,9 +7,9 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content fullscreem>
+<ion-content fullscreem >
 
-  <ion-list>
+  <ion-list *ngIf="pedidos.length > 0; else mensaje">
     <ion-item *ngFor="let pedido of pedidos">
       <ion-avatar slot="start">
         <!-- <img src="./avatar-finn.png"> -->
@@ -42,8 +42,8 @@
 
     <ion-item>
       <ion-label>Enviar a:</ion-label>
-      <ion-select placeholder="Select One">
-        <ion-select-option value="{{direccion.iddireccion_usuario}}" *ngFor="let direccion of direcciones">{{direccion.descripcion}}</ion-select-option>
+      <ion-select placeholder="Seleccionar" (ionChange)="getDireccion();" [(ngModel)]="direccionesusu" >
+        <ion-select-option value="{{direccion.iddireccion_usuario}}"  *ngFor="let direccion of direcciones">{{direccion.descripcion}}</ion-select-option>
       </ion-select>
     </ion-item>
 
@@ -64,10 +64,19 @@
     </ion-item>
 
     
-      <ion-button expand="block">Comprar</ion-button>  
+      <ion-button expand="block" (click)="Comprar()">Comprar</ion-button>  
    
 
   </ion-list>
+
+  <ng-template #mensaje>
+
+    <ion-text  >
+      <h1 class="ion-text-center">No tienes pedidos :(</h1>
+
+    </ion-text>
+  </ng-template>
+
 
 
 
