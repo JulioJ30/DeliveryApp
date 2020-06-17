@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient ,HttpHeaders} from '@angular/common/http';
 import {PedidosEntidad} from '../models/pedidos.entidad';
 
 @Injectable({
@@ -8,26 +8,7 @@ import {PedidosEntidad} from '../models/pedidos.entidad';
 export class PedidosService{
 
   pedidostmp:PedidosEntidad[] = [
-    {
-      cantidad: 1,
-      descripcion: "1/4 de pollo",
-      id: 1,
-      idusuario: null,
-      img: null,
-      nombre: "Pollo a la brasa",
-      precio: 10,
-      tipo: "C"
-    },
-    {
-      cantidad: 1,
-      descripcion: "1/8 de pollo",
-      id: 2,
-      idusuario: null,
-      img: null,
-      nombre: "Pollo a la brasa",
-      precio: 10,
-      tipo: "C"
-    }
+                            
   ];
 
 
@@ -35,6 +16,8 @@ export class PedidosService{
     constructor(private http: HttpClient){
 
     }
+
+    // METODOS TEMPORALES
 
     AgregarTmp(pedido:PedidosEntidad){
 
@@ -67,6 +50,10 @@ export class PedidosService{
         console.log(this.pedidostmp);
     }
 
+    LimpiarTmp(){
+      this.pedidostmp = [];
+    }
+
     getPedidos(){
       return this.pedidostmp;
     }
@@ -87,10 +74,10 @@ export class PedidosService{
 
       this.pedidostmp.map((obj)=>{
         if(obj.id == id && obj.tipo == tipo){
-          obj.cantidad -= 1;
-          // if(obj.cantidad == 0){
-          //   devolver = true;
-          // }
+          
+          if(obj.cantidad > 1 ){
+            obj.cantidad -= 1;
+          }
         }
 
         return obj;
@@ -111,6 +98,47 @@ export class PedidosService{
       if (index > -1) {
         this.pedidostmp.splice(index, 1);
       }
+    }
+  
+
+    //API REST
+    RegistrarPedidos(iddireccion:number,horaentrega?:string){
+
+      let headers = new HttpHeaders();
+      headers.append("Accept", 'application/json');
+      headers.append('Content-Type', 'application/json' );
+  
+      let datos = {
+        iddireccion: iddireccion,
+        horaentrega: horaentrega,
+      }
+  
+      // this.http.post("http://159.203.164.191:3000/api/pedidos/registrar/",datos,{headers:headers}).subscribe((data:any)=>{
+        // return data;
+      // })
+
+      return this.http.post("http://159.203.164.191:3000/api/pedidos/registrar/",datos,{headers:headers});
+
+  
+    }
+
+    RegistrarDetPedidos(idpedido:number,tipo:string,id:number,cantidad:number){
+
+      let headers = new HttpHeaders();
+      headers.append("Accept", 'application/json');
+      headers.append('Content-Type', 'application/json' );
+  
+      let datos = {
+        idpedido: idpedido,
+        tipo: tipo,
+        id:id,
+        cantidad:cantidad
+      }
+
+      
+  
+      return this.http.post("http://159.203.164.191:3000/api/depedidos/registrar/",datos,{headers:headers});
+  
     }
 
     
