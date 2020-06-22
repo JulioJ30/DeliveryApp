@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Mis Pedidos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-grid>
+    <ion-row>
+        <ion-col *ngFor="let pedacept of aceptados" size="12" no-padding no-margin>
+
+          <ion-card no-padding routerLink='repartidorpedido-detalle/{{pedacept.idpedido}}' class="card">
+            <!-- <img src="{{restaurante.img}}" class="imagenes"> -->
+            <ion-card-header>
+              <!-- <ion-card-subtitle>Card Subtitle</ion-card-subtitle> -->
+              <ion-card-subtitle>{{pedacept.usuario}}</ion-card-subtitle>
+              <ion-card-title>{{pedacept.direccion_usuario}} <fa-icon icon="shipping-fast" size="2x" style="float: inline-end"></fa-icon> </ion-card-title>
+            </ion-card-header>
+
+            <ion-card-content>
+              hora entrega: {{pedacept.horaentrega}}
+            </ion-card-content>
+          </ion-card>
+
+        </ion-col> 
+    </ion-row> 
+  </ion-grid>
+</ion-content>

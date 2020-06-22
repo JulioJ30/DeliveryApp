@@ -19,6 +19,14 @@ const routes: Routes = [
         loadChildren: () => import('../repartidorpedido-detalle/repartidorpedido-detalle.module').then( m => m.RepartidorpedidoDetallePageModule)
       },
       {
+        path: 'pedidosaceptados',
+        loadChildren: () => import('../pedidosaceptados/pedidosaceptados.module').then( m => m.PedidosaceptadosPageModule)
+      },
+      {
+        path: 'pedidosaceptados/repartidorpedido-detalle/:idpedido',
+        loadChildren: () => import('../repartidorpedido-detalle/repartidorpedido-detalle.module').then( m => m.RepartidorpedidoDetallePageModule)
+      },
+      {
         path: '',
         redirectTo: '/tabs-repartidor/repartidorpedido',
         pathMatch: 'full'
