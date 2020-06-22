@@ -14,6 +14,7 @@ export class RepartidorpedidoPage implements OnInit {
 
     this.repartidorService.getPedidoRepartidor().subscribe(data=>{
       this.pedidosRe = data;
+      console.log(this.pedidosRe);
     });
   }
 

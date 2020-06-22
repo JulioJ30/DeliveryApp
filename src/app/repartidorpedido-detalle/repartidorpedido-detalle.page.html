@@ -104,9 +104,19 @@
     </ion-item>
     
   </ion-list>
-  <section >
+
+  <section *ngIf="estadoR == '1'; else concluirpedido">
     <ion-button (click)="AceptarPedido()" expand="block">Aceptar Pedido</ion-button>
   </section>
+
+  <ng-template #concluirpedido>
+    <section>
+      <ion-button (click)="ConcluirPedido()" expand="block">Conluir Pedido</ion-button>
+      <!-- <p>hola</p> -->
+    </section>
+  </ng-template>
+
+
   <ng-template #mensaje>
 <!-- 
     <ion-text  >

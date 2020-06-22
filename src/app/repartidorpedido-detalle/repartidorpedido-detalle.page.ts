@@ -26,6 +26,7 @@ export class RepartidorpedidoDetallePage implements OnInit {
   hora1: string;
   hora2: string;
   usu: string;
+  estadoR: string;
 
   // PRECIO TOTALES DE CADA PRODUCTO
   Preciomenu:number = 0;
@@ -62,7 +63,7 @@ export class RepartidorpedidoDetallePage implements OnInit {
       result => {
       this.detalles = result;
       
-      console.log(this.detalles);
+      console.log('Esto es',this.detalles);
       
       // PEDIDOS
       this.usu = this.detalles[0].usuario;
@@ -74,6 +75,7 @@ export class RepartidorpedidoDetallePage implements OnInit {
       this.hora1 = this.detalles[0].horaentrega;
       this.hora2 = this.detalles[0].horaentregareal;
       this.cantidad = this.detalles[0].cantidad;
+      this.estadoR = this.detalles[0].estado;
 
       
       // GOOGLE MAPS
@@ -160,10 +162,35 @@ export class RepartidorpedidoDetallePage implements OnInit {
         this.router.navigate(['/tabs-repartidor/repartidorpedido/']);
 
       }else{
-
+        console.log('error');
       }
 
-      
+    });
+  }
+
+
+  async ConcluirPedido(){
+    
+    //MOSTRAMOS CARGO
+    this.loading = await this.loadingS.MostarCarga("Aceptando");
+    this.loading.present();
+
+    this.idrepartidorUp = this.usuarioS.getID();
+    this.pedidoDetalleService.putConcluirpedido(this.idpedido,this.idrepartidorUp).subscribe(async(data:any)=>{
+      //console.log(data);
+      if(data.status == "Concluido"){
+        this.alert = await this.alertS.Informar("Pedido concluido");
+        this.alert.present();
+
+        //OCULTAMOS CARGA
+        this.loading.dismiss();
+
+        //REDIRECCIONAR
+        this.router.navigate(['/tabs-repartidor/pedidosaceptados/']);
+
+      }else{
+        console.log('error');
+      }
 
     });
   }
